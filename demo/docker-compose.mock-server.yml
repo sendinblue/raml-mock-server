@@ -1,0 +1,9 @@
+version: '3.2'
+services:
+  raml-osprey:
+    #we will change it once we have a image created from SIB repo
+    image: deepakgcsib/raml-mock-service
+    ports:
+    - "8000:80"
+    volumes:
+    - ./raml:/raml
