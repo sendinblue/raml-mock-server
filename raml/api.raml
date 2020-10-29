@@ -1,0 +1,15 @@
+#%RAML 1.0
+---
+title: RAML API
+baseUrl: /
+mediaType: application/json
+
+/api:
+  get:
+    responses:
+      200:
+        body:
+          example: |
+            {
+              "message": "Your REST API mock server is up and running ^^"
+            }

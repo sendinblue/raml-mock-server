@@ -1,0 +1,11 @@
+version: '3.2'
+services:
+  raml-mock-server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: raml-mock-server
+    ports:
+    - "8000:80"
+    volumes:
+    - ./raml:/raml
