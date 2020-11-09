@@ -1,35 +1,31 @@
 # RAML Mock Server 
 
-##### Brief introduction   
+This application allows you to run a REST API mock sever which uses the [RAML](https://raml.org/) format for endpoint definition. 
 
-This application allows you to run a REST API mock sever which uses [RAML](https://raml.org/). 
+## Demo
+To run the demo the API definition file `raml/api.raml` is required which creates a mock server with an endpoint.
 
-# Demo
-The only file you need to run your API demo is **raml/api.raml**, which is used by the mock server to create endpoints.
+The file `api.raml` contains one basic example of `GET` request. Check the RAML [developer's page](https://raml.org/developer) to explore more.
 
-api.raml contains one basic example of **GET** request and to explore more please check the RAML 
-[developers page](https://raml.org/developer).
-
-
-#### Execute below command to start the demo:
-
+- Execute below command to start the demo:
+```-
     $ docker-compose up -d
-       
-Go to [http://localhost:8000/api/](http://localhost:8000/api/) and 
-that's all your mock server is up and running. 
+```
 
-**ps:** Make sure to change the port in docker-compose.mock-server.yml, if it's already occupied.
+- Open [http://localhost:8000/](http://localhost:8000/) to ensure your mock server is up and running.
 
-If you make any changes in api.raml, you'll have to execute the command below for changes to make effect.
+- Ensure choosing a different port in docker-compose.mock-server.yml in the case `8000` is already occupied.
 
+- Ensure restarting the mock server on any change in `api.raml`. The following command can be used for that:
+```-
     $ docker-compose restart 
+```
 
+## Integration
 
-# Integration
+- Ensure the endpoint definition file exists in the project and is located in a dedicated (mountable) folder, e.g. `raml/api.raml`.
 
-* Ensure `api.raml` file exists in your project (e.g. `raml/api.raml`).
-
-* Create `docker-compose.mock-server.yml` into root folder of your project with below code:
+- Create `docker-compose.mock-server.yml` in the root folder of the project. The file should contain the following definition. The mounted `raml` folder must be adjusted if needed.
 ```yaml
 version: '3.4'
 services:
@@ -40,13 +36,16 @@ services:
     volumes:
     - ./raml:/raml
 ```
-* To start/restart the mock server for your project, please execute:  
+
+- Start the mock server for your project by executing the following command:    
 ```-
 $ dcker-compose -f docker-compose-mock-server.yml up -d
-
-$ docker-compose -f docker-compose-mock-server.yml restart
 ```
-    
+
+- Restart the mock server on any change in `api.raml` file:
+```-
+$ docker-compose -f docker-compose-mock-server.yml restart
+```    
     
      
 
